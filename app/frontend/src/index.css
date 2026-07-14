@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --ink: #142523;
+    --teal: #135c50;
+    --orange: #e2603b;
+    --cream: #faf7f2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--cream);
+    color: var(--ink);
+}
+
+.font-display {
+    font-family: "Bricolage Grotesque", "Instrument Sans", sans-serif;
+}
+
+::selection {
+    background: rgba(226, 96, 59, 0.28);
+}
+
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(4px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.liquid-glass-strong {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(50px);
+}
+
+@layer base {
+    :root {
+        --background: 40 33% 96%;
+        --foreground: 176 30% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 176 30% 11%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 176 30% 11%;
+        --primary: 170 66% 22%;
+        --primary-foreground: 40 33% 96%;
+        --secondary: 42 28% 91%;
+        --secondary-foreground: 176 30% 11%;
+        --muted: 42 28% 91%;
+        --muted-foreground: 174 7% 39%;
+        --accent: 13 74% 56%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 43 24% 87%;
+        --input: 43 24% 87%;
+        --ring: 170 66% 22%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}

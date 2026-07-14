@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionBadge } from "@/components/site/SectionBadge";
@@ -11,16 +11,16 @@ const ImageCarousel = ({ images, title, industry }) => {
   const [current, setCurrent] = useState(0);
   const timerRef = useRef(null);
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     timerRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 2500);
-  };
+  }, [images.length]);
 
   useEffect(() => {
     startTimer();
     return () => clearInterval(timerRef.current);
-  }, [images.length]);
+  }, [startTimer]);
 
   return (
     <>

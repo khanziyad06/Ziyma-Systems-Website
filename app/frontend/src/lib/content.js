@@ -4,8 +4,8 @@ export const site = {
   phoneDisplay: "+91 81042 05598",
   telUrl: "tel:+918104205598",
   whatsappUrl: "https://wa.me/918104205598",
-  email: "ziyadkhan060308@gmail.com",
-  mailtoUrl: "mailto:ziyadkhan060308@gmail.com",
+  email: "contact@ziymasystems.in",
+  mailtoUrl: "mailto:contact@ziymasystems.in",
 };
 
 export const navLinks = [
@@ -39,37 +39,38 @@ export const services = [
 // Add new portfolio pieces here as you complete client work.
 export const portfolio = [
   {
-    slug: "clinic-intake-system",
-    title: "Clinic Intake System",
-    industry: "Healthcare",
-    description: "A structured patient intake flow replacing scattered calls, messages and spreadsheets.",
-    image: "https://static.prod-images.emergentagent.com/jobs/32e17a24-9530-4a08-a15c-e16a911a5745/images/2bdcc39a71f3584045ebac6615f805ea429bfc3e3d78a1ade9c14b3995e78a7b.png",
+    slug: "little-ummah-dashboard",
+    title: "Little Ummah Dashboard",
+    industry: "Management",
+    description: "Created for a content creator to operate insights, automate comment replies, and generate content ideas. Contact us for more information.",
+    link: "https://little-ummah-dashboard-99dc.vercel.app/",
+    image: "/little-ummah.png",
     aspect: "aspect-[4/3]",
   },
   {
-    slug: "restaurant-reporting-layer",
-    title: "Restaurant Reporting Layer",
+    slug: "ziyma-billing-product",
+    title: "Ziyma Systems Billing",
+    industry: "Finance",
+    description: "A streamlined billing and invoicing system designed for accurate reporting and clear financial tracking.",
+    link: "https://ziyma-systems-billing-product.vercel.app/",
+    image: "/ziyma-billing.png",
+    aspect: "aspect-square",
+  },
+  {
+    slug: "boojee-cafe",
+    title: "Boojee Cafe Dashboard",
     industry: "Hospitality",
-    description: "A data audit and dashboard layer giving managers clear weekly numbers, no surprises.",
-    image: "https://static.prod-images.emergentagent.com/jobs/32e17a24-9530-4a08-a15c-e16a911a5745/images/9141d0c3c417b5d4a357d05eb589053cddbe2a5e7ef9139b37237474377d9e2f.png",
-    aspect: "aspect-square",
-  },
-  {
-    slug: "agency-automation-hub",
-    title: "Agency Automation Hub",
-    industry: "Agencies",
-    description: "Intake, estimates and task routing connected into one traceable automated flow.",
-    image: "https://static.prod-images.emergentagent.com/jobs/32e17a24-9530-4a08-a15c-e16a911a5745/images/d0a051cadd03a89db9145fd378aa33d55cc1d90944eb5d07f8b1078dad21e6af.png",
-    aspect: "aspect-square",
-  },
-  {
-    slug: "decor-studio-portfolio",
-    title: "Decor Studio Website",
-    industry: "Interior Design",
-    description: "A portfolio-led website with quote flows built to win higher-value projects.",
-    image: "https://static.prod-images.emergentagent.com/jobs/32e17a24-9530-4a08-a15c-e16a911a5745/images/085b79baf554dfcda9c6070d1332089a0de3d54c63b4cee9d7335f57c1c70f14.png",
+    description: "A full cafe management system with an AI chatbot for customers to book tables and plan events, plus a real-time admin dashboard to manage reservations, enquiries, customers and menu.",
+    link: "https://boojee-cafe-sample.vercel.app",
+    images: [
+      "/boojee-5.jpg",
+      "/boojee-1.jpg",
+      "/boojee-2.jpg",
+      "/boojee-3.jpg",
+      "/boojee-4.jpg",
+    ],
     aspect: "aspect-[4/3]",
-  },
+  }
 ];
 
 export const processSteps = [

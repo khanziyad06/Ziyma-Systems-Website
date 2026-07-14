@@ -4,4 +4,12 @@
     <loc>https://ziymasystems.in/</loc>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://ziymasystems.in/privacy-policy</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ziymasystems.in/terms-of-service</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>

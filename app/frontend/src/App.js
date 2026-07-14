@@ -7,6 +7,9 @@ import { Services } from "@/components/site/Services";
 import { Work } from "@/components/site/Work";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { PrivacyPolicy } from "@/components/site/PrivacyPolicy";
+import { TermsOfService } from "@/components/site/TermsOfService";
+import { CookieConsent } from "@/components/site/CookieConsent";
 
 const Home = () => (
   <main data-testid="home-page">
@@ -23,8 +26,11 @@ function App() {
   return (
     <BrowserRouter>
       <Toaster position="top-center" richColors />
+      <CookieConsent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
       </Routes>
     </BrowserRouter>
   );

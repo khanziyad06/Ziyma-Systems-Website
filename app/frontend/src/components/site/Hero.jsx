@@ -88,11 +88,6 @@ export const Hero = () => (
         className="mt-8 sm:mt-12 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5"
       >
         <RollButton label="Start a project" testId="hero-start-project-btn" onClick={() => scrollTo("#contact")} />
-        <div className="inline-flex items-center gap-2.5 self-start bg-white rounded-[4px] px-3 sm:px-4 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300">
-          <StarburstIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#135C50]" />
-          <span className="text-[13px] sm:text-[14px] font-medium text-[#142523]">Full-stack systems studio</span>
-          <span className="text-[10px] sm:text-[11px] bg-[#142523] text-white px-1.5 sm:px-2 py-0.5 rounded">India</span>
-        </div>
       </motion.div>
     </div>
   </header>

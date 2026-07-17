@@ -39,7 +39,7 @@ export const Navbar = () => {
         <nav data-testid="main-navbar" className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-[0_2px_12px_rgba(20,37,35,0.06)]">
           <div className="flex items-center gap-6">
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} data-testid="nav-logo" className="flex items-center gap-3">
-              <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#142523] flex items-center justify-center text-white text-[10px] sm:text-[11px] font-bold tracking-tight">ZY</span>
+              <img src="/logo.png" alt="Ziyma Systems logo" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover" />
               <span className="hidden sm:block text-[14px] font-semibold text-[#142523] tracking-tight pr-2">Ziyma Systems</span>
             </button>
             <div className="hidden md:flex items-center gap-6">

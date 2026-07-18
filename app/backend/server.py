@@ -13,6 +13,7 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 import asyncio
+from supabase import create_client, Client
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,8 +21,21 @@ load_dotenv(ROOT_DIR / '.env')
 # JSON file for backup storage
 INQUIRIES_FILE = ROOT_DIR / "inquiries.json"
 
+# Supabase client setup
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")
+SUPABASE_TABLE = os.environ.get("SUPABASE_TABLE", "consultations")
+
+supabase: Optional[Client] = None
+if SUPABASE_URL and SUPABASE_SERVICE_KEY:
+    try:
+        supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+    except Exception as e:
+        logging.getLogger(__name__).error(f"Failed to initialize Supabase client: {e}")
+
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+
 
 
 class ContactInquiry(BaseModel):
@@ -55,6 +69,33 @@ def _save_to_json(inquiry: dict):
         INQUIRIES_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     except Exception as e:
         logger.error(f"Failed to save inquiry to JSON: {e}")
+
+
+def _save_to_supabase(inquiry: dict):
+    """Insert inquiry into the Supabase table."""
+    if not supabase:
+        logger.error("Supabase client not configured. Skipping Supabase insert.")
+        return False
+    try:
+        # Match the exact columns of the existing table:
+        # name, email, service, message, created_at (all NOT NULL, no phone/id column)
+        row = {
+            "name": inquiry["name"],
+            "email": inquiry["email"],
+            "phone": inquiry.get("phone") or None,
+            "service": inquiry.get("service") or "Not specified",
+            "message": inquiry["message"],
+            "created_at": inquiry["created_at"],
+        }
+        supabase.table(SUPABASE_TABLE).insert(row).execute()
+        logger.info(f"Inquiry from {inquiry['name']} saved to Supabase.")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to save inquiry to Supabase: {e}")
+        return False
+
+
+
 
 
 def _send_email(inquiry: ContactInquiry):
@@ -144,17 +185,25 @@ async def root():
 @api_router.post("/contact", response_model=ContactInquiry)
 async def create_contact(payload: ContactInquiryCreate):
     inquiry = ContactInquiry(**payload.model_dump())
+    inquiry_dict = inquiry.model_dump()
 
     # Save to JSON backup
-    _save_to_json(inquiry.model_dump())
+    _save_to_json(inquiry_dict)
 
-    # Send email (run in thread pool to avoid blocking)
-    email_sent = await asyncio.to_thread(_send_email, inquiry)
+    # Save to Supabase (run in thread pool to avoid blocking)
+    supabase_saved = await asyncio.to_thread(_save_to_supabase, inquiry_dict)
 
-    if not email_sent:
-        logger.warning("Email notification failed, but inquiry was saved to JSON backup.")
+    if not supabase_saved:
+        logger.warning("Supabase insert failed, but inquiry was saved to JSON backup.")
+
+    # Email notifications are currently disabled (Render free tier blocks outbound SMTP).
+    # Uncomment below to re-enable once using an HTTP-based email provider or a paid Render plan.
+    # email_sent = await asyncio.to_thread(_send_email, inquiry)
+    # if not email_sent:
+    #     logger.warning("Email notification failed, but inquiry was saved.")
 
     return inquiry
+
 
 
 @api_router.get("/contact", response_model=List[ContactInquiry])
